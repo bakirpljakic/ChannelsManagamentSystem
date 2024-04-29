@@ -11,7 +11,7 @@ function TV() {
   }, []);
 
   const getAllCampaigns = async () => {
-    const channelName = 'TV'; 
+    const channelName = 'TV';
     try {
       const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/channel/${channelName}/campaigns`, {
         method: 'GET',
@@ -74,7 +74,12 @@ function TV() {
           <h3>{campaign.name}</h3>
           <p>Region: {campaign.region}</p>
           <p>Media type: {campaign.mediatypes}</p>
-          <button className="button details">Details</button>
+          <button
+            className="button details"
+            onClick={() => navigate(`/details/${campaign.id}`)} // Navigacija na novu rutu
+          >
+            Details
+          </button>
           <button className="button download" onClick={() => handleDownload(campaign.id)}>Download</button>
         </div>
       ))}
