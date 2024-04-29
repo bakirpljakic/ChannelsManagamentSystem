@@ -7,8 +7,7 @@
 
 .campaign-card {
   width: 300px;
-  margin-top: 15px;
-  margin: 10px;
+  margin-top: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,7 +27,8 @@
 }
 
 .details {
-  background-color: #2B3D5B; /* Dark blue background for the Details button */
+  background-color: #2B3D5B; 
+  margin-right: 2px;
 }
 
 .download {

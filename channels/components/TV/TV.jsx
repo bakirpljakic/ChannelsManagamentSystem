@@ -11,8 +11,9 @@ function TV() {
   }, []);
 
   const getAllCampaigns = async () => {
+    const channelName = 'TV'; // This could also be dynamic if needed
     try {
-      const response = await fetch('https://marketing-campaign-management-system-server.vercel.app/campaign', {
+      const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/channel/${channelName}/campaigns`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -34,6 +35,7 @@ function TV() {
     }
   };
 
+
   const handleDownload = (campaignId) => {
     const url = `https://marketing-campaign-management-system-server.vercel.app/request-campaign/${campaignId}/media/download`;
 
@@ -41,25 +43,25 @@ function TV() {
       method: 'GET',
       credentials: 'include',
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.blob();
-    })
-    .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = "campaign_media";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-      console.error('Error downloading the file:', error);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "campaign_media";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(error => {
+        console.error('Error downloading the file:', error);
+      });
   };
 
   if (loading) return <div>Loading...</div>;
@@ -70,9 +72,8 @@ function TV() {
       {campaigns.map((campaign) => (
         <div key={campaign.id} className="campaign-card">
           <h3>{campaign.name}</h3>
-          <p>{campaign.region}</p>
-          <p>{campaign.mediatypes}</p>
-          <p>{`${campaign.durationfrom} - ${campaign.durationto}`}</p>
+          <p>Region: {campaign.region}</p>
+          <p>Media type: {campaign.mediatypes}</p>
           <button className="button details">Details</button>
           <button className="button download" onClick={() => handleDownload(campaign.id)}>Download</button>
         </div>
