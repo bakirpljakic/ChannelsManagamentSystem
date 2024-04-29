@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css'
+import TV from '../components/TV/TV';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Router>
         <Navbar />
+        <TV></TV>
       </Router>
     </div>
 

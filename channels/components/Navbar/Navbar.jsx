@@ -37,7 +37,6 @@ const Navbar = () => {
         <Link to="/display" className="navbar-item">Display</Link>
       </div>
 
-      {/* Dropdown za odabir regije */}
       <div className="dropdown-container">
         <select
           className="input-select"
