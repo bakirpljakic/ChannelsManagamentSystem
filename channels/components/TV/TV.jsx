@@ -11,7 +11,7 @@ function TV() {
   }, []);
 
   const getAllCampaigns = async () => {
-    const channelName = 'TV'; // This could also be dynamic if needed
+    const channelName = 'TV'; 
     try {
       const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/channel/${channelName}/campaigns`, {
         method: 'GET',
