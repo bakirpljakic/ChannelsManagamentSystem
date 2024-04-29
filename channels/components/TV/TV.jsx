@@ -34,6 +34,34 @@ function TV() {
     }
   };
 
+  const handleDownload = (campaignId) => {
+    const url = `https://marketing-campaign-management-system-server.vercel.app/request-campaign/${campaignId}/media/download`;
+
+    fetch(url, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "campaign_media";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error('Error downloading the file:', error);
+    });
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -42,6 +70,11 @@ function TV() {
       {campaigns.map((campaign) => (
         <div key={campaign.id} className="campaign-card">
           <h3>{campaign.name}</h3>
+          <p>{campaign.region}</p>
+          <p>{campaign.mediatypes}</p>
+          <p>{`${campaign.durationfrom} - ${campaign.durationto}`}</p>
+          <button className="button details">Details</button>
+          <button className="button download" onClick={() => handleDownload(campaign.id)}>Download</button>
         </div>
       ))}
     </div>
