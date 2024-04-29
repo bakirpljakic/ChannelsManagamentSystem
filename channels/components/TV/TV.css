@@ -1,16 +1,36 @@
 .campaigns-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .campaign-card {
-    width: 300px;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.campaign-card {
+  width: 300px;
+  margin-top: 15px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #DDDEE5;
+  text-align: center; /* Centers text within each campaign card */
+}
+
+.button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.details {
+  background-color: #2B3D5B; /* Dark blue background for the Details button */
+}
+
+.download {
+  background-color: #4CAF50; /* Green background for the Download button */
+}
