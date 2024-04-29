@@ -1,0 +1,44 @@
+.navbar {
+  background-color: #2B3D5B;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Prostor između stavki */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center; /* Centriranje stavki */
+  align-items: center;
+  width: 100%; /* Puno širine */
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.navbar-item:last-child {
+  margin-right: 0;
+}
+
+.dropdown-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-select {
+  margin-left: auto; /* Pomičemo dropdown na desnu stranu */
+}
