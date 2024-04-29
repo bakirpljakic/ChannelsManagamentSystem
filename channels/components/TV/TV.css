@@ -7,13 +7,14 @@
 
 .campaign-card {
   width: 300px;
-  margin-top: 20px;
+  margin-top: 25px;
+  margin-right: 20px; 
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #DDDEE5;
-  text-align: center; /* Centers text within each campaign card */
+  text-align: center; 
 }
 
 .button {
