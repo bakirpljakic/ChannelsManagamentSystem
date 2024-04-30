@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-center">
-        <Link to="/tv" className="navbar-item">TV</Link>
+        <Link to="/" className="navbar-item">TV</Link>
         <Link to="/radio" className="navbar-item">Radio</Link>
         <Link to="/billboard" className="navbar-item">Billboard</Link>
         <Link to="/website" className="navbar-item">Website</Link>
