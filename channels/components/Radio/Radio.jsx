@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Uvozimo js-cookie biblioteku
-import './TV.css';
+import './Radio.css';
 
-function TV() {
+function Radio() {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ function TV() {
   }, []);
 
   const getAllCampaigns = async () => {
-    const channelName = 'TV';
+    const channelName = 'Radio';
     try {
       const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/channel/${channelName}/campaigns`, {
         method: 'GET',
@@ -67,10 +67,7 @@ function TV() {
   };
 
   const handleDetailsClick = (campaignId) => {
-    // Spremanje ID kampanje u cookie
     Cookies.set('selectedCampaignId', campaignId, { expires: 1 }); // Cookie ističe nakon 1 dana
-
-    // Navigacija na detalje kampanje
     navigate(`/details`);
   };
 
@@ -97,4 +94,4 @@ function TV() {
   );
 }
 
-export default TV;
+export default Radio;

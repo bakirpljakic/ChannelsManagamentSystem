@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Details from '../components/Details/Details';
 import TV from '../components/TV/TV';
-
+import Radio from '../components/Radio/Radio';
+import Billboard from '../components/Billboard/Billboard';
+import Website from '../components/Website/Website';
+import Display from '../components/Display/Display';
 
 function App() {
   return (
@@ -12,12 +15,12 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
+          <Route path="/" element={<TV />} />
           <Route path="/details" element={<Details />} />
-          <Route path="/tv" element={<TV />} />
-          <Route path="/radio" element={<TV />} />
-          <Route path="/billboard" element={<TV />} />
-          <Route path="/website" element={<TV />} />
-          <Route path="/display" element={<TV />} />
+          <Route path="/radio" element={<Radio />} />
+          <Route path="/billboard" element={<Billboard />} />
+          <Route path="/website" element={<Website />} />
+          <Route path="/display" element={<Display />} />
         </Routes>
       </div>
     </Router>

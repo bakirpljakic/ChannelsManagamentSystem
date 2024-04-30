@@ -1,0 +1,83 @@
+.unique-campaign-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+table {
+    background-color: #DDDEE5;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 20px;
+    vertical-align: top;
+}
+
+.campaign-details input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.campaign-details p {
+    margin-bottom: 20px;
+    margin-left: 5px;
+    font-size: 16px;
+    color: #2B3D5B;
+}
+
+.media-container {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.media-card {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #2B3D5B;
+    border-radius: 10px;
+    flex-grow: 1;
+    max-width: calc(33.33% - 20px);
+    position: relative;
+}
+
+.media-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 3px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.media-card iframe {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    /* Prilagodite visinu iframe-a prema potrebi */
+    object-fit: contain;
+    border: none;
+}
+
+.media-card p {
+    text-align: center;
+}
+
+.media-card img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%; /* Postavite visinu slike na 100% kartice */
+    object-fit: cover; /* Popuni cijelu karticu bez iskrivljenja */
+}
