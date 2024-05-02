@@ -10,7 +10,12 @@ function Radio() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllCampaigns();
+    const regionId = Cookies.get('selectedRegionId'); 
+    if (regionId) {
+      getCampaignsByGroup(regionId);
+    } else {
+      getAllCampaigns();
+    }
   }, []);
 
   const getAllCampaigns = async () => {
@@ -33,6 +38,33 @@ function Radio() {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching campaigns:', error);
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  const getCampaignsByGroup = async (regionId) => {
+    const channelName = 'Radio';
+
+    try {
+      const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/campaign/regiongroups`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ group_id: regionId, channel: channelName }) // Dodajemo ime kanala u tijelo zahtjeva
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch campaigns for the selected region');
+      }
+
+      const campaignData = await response.json();
+      setCampaigns(campaignData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching campaigns for the selected region:', error);
       setError(error.message);
       setLoading(false);
     }

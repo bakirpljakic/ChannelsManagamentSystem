@@ -1,31 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './Navbar.css';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const [regions, setRegions] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('');
 
-  const [selectedRegion, setSelectedRegion] = useState(''); // Stanje za odabranu regiju
+  useEffect(() => {
+    const fetchRegions = async () => {
+      try {
+        const response = await fetch('https://marketing-campaign-management-system-server.vercel.app/groups', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch regions');
+        }
+
+        const data = await response.json();
+        setRegions(data);
+
+        const savedRegionId = Cookies.get('selectedRegionId');
+        if (savedRegionId) {
+          const region = data.find(r => r.id === parseInt(savedRegionId));
+          if (region) {
+            setSelectedRegion(region.name);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching regions:', error);
+      }
+    };
+
+    fetchRegions();
+  }, []);
 
   const handleRegionChange = (event) => {
-    const selectedRegion = event.target.value;
-    setSelectedRegion(selectedRegion);
-    // Ovdje možete implementirati logiku za odabir regije (npr. navigacija ili promjena stanja)
-    console.log(`Odabrana regija: ${selectedRegion}`);
-  };
+    const regionName = event.target.value;
+    if (regionName === '') {
+      window.location.reload();
+      // Ako je izabrana opcija "All regions", obriši kolačić 'selectedRegionId'
+      Cookies.remove('selectedRegionId');
+      setSelectedRegion(''); // Postavljamo selectedRegion na prazan string
+      window.location.reload();
 
-  const regions = [
-    'Sarajevo',
-    'Mostar',
-    'Banja Luka',
-    'Tuzla',
-    'Zenica',
-    'Bihać',
-    'Doboj',
-    'Trebinje',
-    // Dodajte ostale regije po potrebi
-  ];
+    } else {
+      setSelectedRegion(regionName);
+      const region = regions.find(r => r.name === regionName);
+      if (region) {
+        console.log(`Selected region: ${region.name}, ID: ${region.id}`);
+        Cookies.set('selectedRegionId', region.id, { expires: 1 });
+        window.location.reload();
+      }
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -36,7 +69,6 @@ const Navbar = () => {
         <Link to="/website" className="navbar-item">Website</Link>
         <Link to="/display" className="navbar-item">Display</Link>
       </div>
-
       <div className="dropdown-container">
         <select
           className="input-select"
@@ -45,7 +77,7 @@ const Navbar = () => {
         >
           <option value="">All regions</option>
           {regions.map((region, index) => (
-            <option key={index} value={region}>{region}</option>
+            <option key={index} value={region.name}>{region.name}</option>
           ))}
         </select>
       </div>
