@@ -18,7 +18,7 @@ const Details = () => {
   useEffect(() => {
     const getCampaignById = async (id) => {
       try {
-        const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/campaign/${id}`, {
+        const response = await fetch(`http://localhost:3000/campaign/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const Details = () => {
 
     const getCampaignMedia = async (campaignId) => {
       try {
-        const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/campaignmedia/${campaignId}`);
+        const response = await fetch(`http://localhost:3000/campaignmedia/${campaignId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch campaign media');
         }

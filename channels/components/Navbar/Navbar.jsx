@@ -10,7 +10,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchRegions = async () => {
       try {
-        const response = await fetch('https://marketing-campaign-management-system-server.vercel.app/groups', {
+        const response = await fetch('http://localhost:3000/groups', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

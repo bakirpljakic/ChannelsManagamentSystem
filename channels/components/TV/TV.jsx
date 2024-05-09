@@ -21,7 +21,7 @@ function TV() {
   const getAllCampaigns = async () => {
     const channelName = 'TV';
     try {
-      const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/channel/${channelName}/campaigns`, {
+      const response = await fetch(`http://localhost:3000/channel/${channelName}/campaigns`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function TV() {
     const channelName = 'TV';
 
     try {
-      const response = await fetch(`https://marketing-campaign-management-system-server.vercel.app/campaign/regiongroups`, {
+      const response = await fetch(`http://localhost:3000/campaign/regiongroups`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ function TV() {
   };
 
   const handleDownload = (campaignId) => {
-    const url = `https://marketing-campaign-management-system-server.vercel.app/request-campaign/${campaignId}/media/download`;
+    const url = `http://localhost:3000/request-campaign/${campaignId}/media/download`;
 
     fetch(url, {
       method: 'GET',
